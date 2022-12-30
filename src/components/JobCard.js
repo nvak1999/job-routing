@@ -9,6 +9,7 @@ export default function JobCard({ job }) {
   return (
     <Card
       sx={{
+        maxWidth: 375,
         minWidth: 300,
         minHeight: 375,
         height: 350,
