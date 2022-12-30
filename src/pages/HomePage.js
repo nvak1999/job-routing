@@ -23,7 +23,7 @@ function HomePage() {
         </Grid>
         <Pagination
           sx={{ alignSelf: "center", m: 2 }}
-          count={10}
+          count={5}
           variant="outlined"
           shape="rounded"
         />
