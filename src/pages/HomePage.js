@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import jobData from "../jobData.json";
 import JobCard from "../components/JobCard";
 import Pagination from "@mui/material/Pagination";
+
 function HomePage() {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

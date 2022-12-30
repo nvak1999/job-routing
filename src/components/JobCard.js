@@ -26,7 +26,7 @@ export default function JobCard({ job }) {
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {job.skills.slice(0, 4).map((skill) => (
-            <Button variant="contained" sx={{ margin: 0.75, ml: 0 }}>
+            <Button variant="outlined" sx={{ margin: 0.75, ml: 0 }}>
               {skill}
             </Button>
           ))}
@@ -42,7 +42,7 @@ export default function JobCard({ job }) {
           mb: 1.5,
         }}
       >
-        <Button variant="contained">Learn more</Button>
+        <Button variant="outlined">Learn more</Button>
       </CardActions>
     </Card>
   );
