@@ -7,20 +7,18 @@ import Pagination from "@mui/material/Pagination";
 
 function HomePage() {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <Container>
       <Container
+        maxWidth="sl"
         sx={{
-          m: 1,
           display: "flex",
           justifyContent: "space-between",
           flexDirection: "column",
         }}
       >
-        <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid container sx={{ m: 1 }}>
           {jobData.slice(0, 5).map((job) => (
-            <Grid item xs={4} md={4} sx={{ minWidth: 300 }}>
-              <JobCard job={job} />
-            </Grid>
+            <JobCard job={job} />
           ))}
         </Grid>
         <Pagination
@@ -29,7 +27,7 @@ function HomePage() {
           shape="rounded"
         />
       </Container>
-    </div>
+    </Container>
   );
 }
 
