@@ -9,15 +9,15 @@ export default function JobCard({ job }) {
   return (
     <Card
       sx={{
-        maxWidth: 300,
+        maxWidth: 365,
         minWidth: 300,
-        minHeight: 375,
-        height: 350,
+        minHeight: 365,
+        height: 300,
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "column",
         alignSelf: "center",
-        m: 3,
+        m: 1,
       }}
     >
       <CardContent sx={{}}>
