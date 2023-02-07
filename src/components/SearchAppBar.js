@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,8 +9,8 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
-import { Button, TextField } from "@mui/material";
-import Modal from "@mui/material/Modal";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,13 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const style = {
-    bgcolor: "white",
-  };
+export default function SearchAppBar({ handleOpen }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -93,55 +87,11 @@ export default function SearchAppBar() {
           </Search>
 
           <LoginIcon sx={{ ml: 2 }} />
-          <Button onClick={handleOpen} variant="outlined">
-            Login
-          </Button>
-          <Modal
-            open={open}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box
-              sx={{
-                style,
-                mt: 5,
-                color: "white",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography component="h1" variant="h5">
-                Login
-              </Typography>
-              <Box component="form">
-                <TextField
-                  fullWidth
-                  name="username"
-                  label="User name"
-                  id="fullWidth"
-                  sx={{ m: 1 }}
-                />
-                <TextField
-                  sx={{ m: 1 }}
-                  fullWidth
-                  type={"passWord"}
-                  label="Password"
-                  id="fullWidth"
-                />
-
-                <Button
-                  sx={{ m: 1, height: 50 }}
-                  fullWidth
-                  variant="outlined"
-                  onClick={handleClose}
-                >
-                  Login
-                </Button>
-              </Box>
-            </Box>
-          </Modal>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Button onClick={handleOpen} variant="outlined">
+              Login
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
