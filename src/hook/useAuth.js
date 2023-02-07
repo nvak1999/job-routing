@@ -1,13 +1,8 @@
-const fakeAuthProvider = {
-  isAuthenticated: false,
-  signin(callback) {
-    fakeAuthProvider.isAuthenticated = true;
-    setTimeout(callback, 100); // fake async
-  },
-  signout(callback) {
-    fakeAuthProvider.isAuthenticated = false;
-    setTimeout(callback, 100);
-  },
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
+const useAuth = () => {
+  return useContext(AuthContext);
 };
 
-export { fakeAuthProvider };
+export default useAuth;

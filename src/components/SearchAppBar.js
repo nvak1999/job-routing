@@ -10,7 +10,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import useAuth from "../hook/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -41,7 +42,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -55,6 +55,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar({ handleOpen }) {
+  const auth = useAuth();
+  let navigate = useNavigate();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -87,11 +90,26 @@ export default function SearchAppBar({ handleOpen }) {
           </Search>
 
           <LoginIcon sx={{ ml: 2 }} />
-          <Link to="/login" style={{ textDecoration: "none" }}>
+          {/* <Link to="/login" style={{ textDecoration: "none" }}>
             <Button onClick={handleOpen} variant="outlined">
               Login
             </Button>
-          </Link>
+          </Link> */}
+          {!auth.user ? (
+            <Button
+              onClick={handleOpen && auth.logout(() => navigate("/login"))}
+              variant="outlined"
+            >
+              Login
+            </Button>
+          ) : (
+            <Button
+              onClick={handleOpen && auth.logout(() => navigate("/login"))}
+              variant="outlined"
+            >
+              {auth.user}
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

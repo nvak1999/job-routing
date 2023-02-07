@@ -1,12 +1,27 @@
 import React from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import Modal from "@mui/material/Modal";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hook/useAuth";
 
-function LoginPage({ open, handleClose, handleSubmit }) {
+function LoginPage({ open, handleClose }) {
   const style = {
     bgcolor: "white",
   };
+  let navigate = useNavigate();
+  let location = useLocation();
+  let auth = useAuth();
+  function handleSubmit(event) {
+    event.preventDefault();
 
+    let from = location.state?.from?.pathname || "/";
+    let formData = new FormData(event.currentTarget);
+    let username = formData.get("username");
+
+    auth.login(username, () => {
+      navigate(from, { replace: true });
+    });
+  }
   return (
     <Modal
       open={open}
@@ -31,6 +46,7 @@ function LoginPage({ open, handleClose, handleSubmit }) {
         <Box component="form" onSubmit={handleSubmit} sx={{ padding: 5 }}>
           <TextField
             fullWidth
+            type={"text"}
             name="username"
             label="User name"
             id="fullWidth"
@@ -43,12 +59,12 @@ function LoginPage({ open, handleClose, handleSubmit }) {
             label="Password"
             id="fullWidth"
           />
-
           <Button
             sx={{ m: 1, height: 50 }}
             fullWidth
             variant="outlined"
             onClick={handleClose}
+            type="submit"
           >
             Login
           </Button>

@@ -7,15 +7,10 @@ import LoginPage from "./pages/LoginPage";
 function App() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-
   const handleClose = () => {
     setOpen(false);
-    console.log("1111");
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submit");
-  };
+
   return (
     <div>
       <SearchAppBar handleOpen={handleOpen} />
@@ -23,13 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route
           path="/login"
-          element={
-            <LoginPage
-              open={open}
-              handleClose={handleClose}
-              handleSubmit={handleSubmit}
-            />
-          }
+          element={<LoginPage open={open} handleClose={handleClose} />}
         ></Route>
       </Routes>
     </div>
