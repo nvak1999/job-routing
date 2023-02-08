@@ -7,7 +7,7 @@ import DetailPage from "./pages/DetailPage";
 
 function App() {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("123456");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [open, setOpen] = useState(false);
   const [openJob, setOpenJob] = useState(false);
