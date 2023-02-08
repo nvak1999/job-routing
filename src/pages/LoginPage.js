@@ -1,27 +1,19 @@
 import React from "react";
 import { Box, Typography, TextField, Button } from "@mui/material";
 import Modal from "@mui/material/Modal";
-import { useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../hook/useAuth";
-
-function LoginPage({ open, handleClose }) {
+import { Link } from "react-router-dom";
+function LoginPage({
+  open,
+  handleClose,
+  username,
+  setUsername,
+  password,
+  setPassword,
+}) {
   const style = {
     bgcolor: "white",
   };
-  let navigate = useNavigate();
-  let location = useLocation();
-  let auth = useAuth();
-  function handleSubmit(event) {
-    event.preventDefault();
 
-    let from = location.state?.from?.pathname || "/";
-    let formData = new FormData(event.currentTarget);
-    let username = formData.get("username");
-
-    auth.login(username, () => {
-      navigate(from, { replace: true });
-    });
-  }
   return (
     <Modal
       open={open}
@@ -43,31 +35,37 @@ function LoginPage({ open, handleClose }) {
         <Typography component="h5" variant="h3" paddingTop={5}>
           LOGIN
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ padding: 5 }}>
+        <Box component="form" sx={{ padding: 5 }}>
           <TextField
             fullWidth
             type={"text"}
             name="username"
             label="User name"
             id="fullWidth"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
             sx={{ m: 1 }}
           />
           <TextField
             sx={{ m: 1 }}
             fullWidth
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
             type={"passWord"}
             label="Password"
             id="fullWidth"
           />
-          <Button
-            sx={{ m: 1, height: 50 }}
-            fullWidth
-            variant="outlined"
-            onClick={handleClose}
-            type="submit"
-          >
-            Login
-          </Button>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button
+              sx={{ m: 1, height: 50 }}
+              fullWidth
+              variant="outlined"
+              onClick={handleClose}
+              type="submit"
+            >
+              Login
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Modal>
